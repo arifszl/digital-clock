@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital clock</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+
+        }
+        body{
+            /* display: flex; */
+            /* justify-content: center; */
+            /* align-items: center; */
+            min-height: 100vh;
+            float: right;
+            background: rgb(34, 82, 76);
+            background-image: url(https://w0.peakpx.com/wallpaper/208/870/HD-wallpaper-stylish-interior-living-room-yellow-walls-gray-sofa-stylish-interior-design.jpg);
+            background-repeat: no-repeat;
+         
+  background-size: cover;
+ 
+
+        }
+        #time
+        {
+            display: flex;
+            gap: 50px;
+            color: rgb(255, 255, 255);
+            font-size: large;
+            border: 5px solid rgb(0, 0, 0);
+            width: 800px;
+    justify-content: center;
+    height: 200px;
+    align-items: center;
+    border-radius: 100px;
+   
+    background-image: url(https://w0.peakpx.com/wallpaper/206/602/HD-wallpaper-yellow-stone-background-stone-textures-grunge-backgrounds-stone-wall-yellow-backgrounds-yellow-stone.jpg);
+
+        }
+        #time .circle
+        {
+            position: relative;
+            height: 150px;
+            font-weight: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #time div{
+            position: absolute;
+            text-align: center;
+            font-weight:500;
+            font-size: 1.5em;
+        }
+        #time .ap1
+        {
+            position: relative;
+            font-size: 1em;
+            transform: translateX(-20px);
+            
+        }
+        #time .circle svg{
+            position: relative;
+            height: 150px;
+            width: 150px;
+            transform: rotate(270deg);
+            
+
+        }
+        #time .circle svg circle{
+            width: 100%;
+            height: 100%;
+            fill: transparent;
+             stroke: rgb(0, 0, 0);
+             
+           stroke-width: 4; 
+           
+            transform: translate(5px,5px);
+        }
+        #time .circle svg circle:nth-child(2){
+         stroke: var(--clr); 
+         stroke-dasharray: 440;
+        
+        
+        }
+
+    </style>
+</head>
+<body>
+  <div id="time">
+      <div class="circle" style="--clr:	#8600c0;">
+          <svg id="first">
+              <circle cx="70" cy="70" r="70"></circle>
+              <circle cx="70" cy="70" r="70" id="hh"></circle>
+          </svg>
+         
+      <div id="hours">00</div>
+    </div>
+    <div class="circle" style="--clr:	#fff700;">
+        
+        <svg>
+            <circle cx="70" cy="70" r="70"></circle>
+            <circle cx="70" cy="70" r="70" id="mm"></circle>
+        </svg>
+
+        <div id="minutes">00</div>
+      </div>
+      <div class="circle" style="--clr:	#0eff66;">
+        <svg>
+            <circle cx="70" cy="70" r="70"></circle>
+            <circle cx="70" cy="70" r="70" id="ss"></circle>
+        </svg>
+        <div id="seconds">00</div>
+      </div>
+      <div class="ap1">
+          
+            
+      <div id="ampm">AM</div>
+    
+    </div>
+  </div>
+ 
+    <!-- <div style = "position:relative; top: 150px; left: 2px; ">
+        <button>ON/OFF</button>
+     </div> -->
+
+
+    <script>
+        let hours=document.getElementById('hours');
+let minutes=document.getElementById('minutes');
+let seconds=document.getElementById('seconds');
+let ampm=document.getElementById('ampm');
+        setInterval(()=>{
+
+
+       
+
+
+let hh=document.getElementById('hh');
+let mm=document.getElementById('mm');
+let ss=document.getElementById('ss');
+
+
+let h=new Date().getHours();
+let m=new Date().getMinutes();
+let s=new Date().getSeconds();
+
+let ap=h>=12 ?"PM" :"AM";
+
+if(h>12)
+{
+    h=h-12;
+}
+h=(h<10) ? "0"+h:h;
+m=(m<10) ? "0"+m:m;
+s=(s<10) ? "0"+s:s;
+
+hours.innerHTML=h;
+minutes.innerHTML=m;
+seconds.innerHTML=s;
+ampm.innerHTML=ap;
+
+hh.style.strokeDashoffset=440-(440*h)/12;
+mm.style.strokeDashoffset=440-(440*m)/60;
+ss.style.strokeDashoffset=440-(440*s)/60;
+})
+
+
+    </script>
+</body>
+</html>
